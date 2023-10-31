@@ -1060,7 +1060,7 @@ spark,SELECT @a INTO @b WHERE @c;,CREATE TABLE @b\nUSING DELTA\n AS\nSELECT\n@a 
 spark,SELECT @a INTO @b GROUP BY @c;,CREATE TABLE @b\nUSING DELTA\n AS\nSELECT\n@a GROUP BY @c;
 spark,"IF OBJECT_ID('@table', 'U') IS NULL CREATE TABLE @table\nUSING DELTA\nAS\n@definition;",CREATE TABLE IF NOT EXISTS @table\nUSING DELTA\nAS\n@definition;
 spark,"IF OBJECT_ID('@table', 'U') IS NULL CREATE TABLE @table (@definition);",CREATE TABLE IF NOT EXISTS @table (@definition);
-spark,"IF OBJECT_ID('@table', 'U') IS NOT NULL DROP TABLE @table;",DROP TABLE IF EXISTS @table;
+spark,"IF OBJECT_ID('@table', 'U') IS NOT NULL DROP TABLE @table;",USE pwb_atlas_temp; DROP TABLE IF EXISTS @table;
 spark,\"@a\",`@a`
 spark,+ '@a',|| '@a'
 spark,'@a' +,'@a' ||
