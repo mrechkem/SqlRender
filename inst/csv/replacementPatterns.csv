@@ -1055,9 +1055,9 @@ spark,"<START_WITH>@a (@columns) AS (@b),",<START_WITH>@a AS (@b)<END_WITH><STAR
 spark,"<START_WITH>@a AS (@b),",<START_WITH>@a AS (@b)<END_WITH><START_WITH>
 spark,<START_WITH>@a (@columns) AS (@b)<END_WITH>,<START_WITH>@a AS (@b)<END_WITH>
 spark,"<START_WITH>@a AS (@b)<END_WITH>",USE pwb_atlas_temp; DROP VIEW IF EXISTS @a; CREATE TEMPORARY VIEW @a AS (@b);\n
-spark,SELECT @a INTO @b FROM @c;,CREATE TABLE @b\nUSING DELTA\nAS\nSELECT\n@a\nFROM\n@c;
-spark,SELECT @a INTO @b WHERE @c;,CREATE TABLE @b\nUSING DELTA\n AS\nSELECT\n@a WHERE @c;
-spark,SELECT @a INTO @b GROUP BY @c;,CREATE TABLE @b\nUSING DELTA\n AS\nSELECT\n@a GROUP BY @c;
+spark,SELECT @a INTO @b FROM @c;,CREATE TABLE IF NOT EXISTS @b\nUSING DELTA\nAS\nSELECT\n@a\nFROM\n@c;
+spark,SELECT @a INTO @b WHERE @c;,CREATE TABLE IF NOT EXISTS @b\nUSING DELTA\n AS\nSELECT\n@a WHERE @c;
+spark,SELECT @a INTO @b GROUP BY @c;,CREATE TABLE IF NOT EXISTS @b\nUSING DELTA\n AS\nSELECT\n@a GROUP BY @c;
 spark,"IF OBJECT_ID('@table', 'U') IS NULL CREATE TABLE @table\nUSING DELTA\nAS\n@definition;",CREATE TABLE IF NOT EXISTS @table\nUSING DELTA\nAS\n@definition;
 spark,"IF OBJECT_ID('@table', 'U') IS NULL CREATE TABLE @table (@definition);",CREATE TABLE IF NOT EXISTS @table (@definition);
 spark,"IF OBJECT_ID('@table', 'U') IS NOT NULL DROP TABLE @table;",USE pwb_atlas_temp; DROP TABLE IF EXISTS @table;
